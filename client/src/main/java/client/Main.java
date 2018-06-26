@@ -1,11 +1,12 @@
 package client;
 
 import domain.UserRepository;
+import java.util.Optional;
+import java.util.stream.LongStream;
 import model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collection;
 import java.util.ServiceLoader;
 
 public class Main {
@@ -16,16 +17,31 @@ public class Main {
         new Main().test();
     }
 
-    public void test() {
+    private void test() {
 
         ServiceLoader<UserRepository> repos = ServiceLoader.load(UserRepository.class);
-        UserRepository repository = repos.findFirst().orElse(null);
+        Optional<UserRepository> optionalRepository = repos.findFirst();
 
-        Collection<User> users = repository.list();
-        logger.info("list users: {}", users);
+        if (!optionalRepository.isPresent()) {
+            logger.error("repository is null");
+            System.exit(1);
+        }
 
-        User user = users.iterator().next();
-        logger.info("user: {}", user);
+        UserRepository repository = optionalRepository.get();
+
+        LongStream.range(1, 10).forEach(l -> {
+            User user = new User();
+            user.setName("User " + l);
+            user.setEmail("user" + l + "@mail.ru");
+            repository.save(user);
+        });
+
+        for (User user: repository.getAll()) {
+            logger.info("user: {}", user);
+        }
+
+        User withNumber2 = repository.findById(2L);
+        logger.info("user by id: {}", withNumber2);
 
     }
 

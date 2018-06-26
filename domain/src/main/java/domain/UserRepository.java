@@ -6,6 +6,8 @@ import java.util.Collection;
 
 public interface UserRepository {
 
-    Collection<User> list();
+    User save(User user);
+    Collection<User> getAll();
+    User findById(Long id);
 
 }

@@ -24,8 +24,8 @@ public class Main {
 
         assertThat(repository, is(not(nullValue())));
 
-        Collection<User> users = repository.list();
-        logger.info("list users: {}", users);
+        Collection<User> users = repository.getAll();
+        logger.info("getAll users: {}", users);
 
         assertThat(users, iterableWithSize(1));
 
@@ -34,7 +34,7 @@ public class Main {
         assertThat(user.getName(), equalTo("Hello"));
         assertThat(user.getEmail(), equalTo("World"));
 
-        logger.info("list users: {}", repository.list());
+        logger.info("getAll users: {}", repository.getAll());
 
     }
 
