@@ -12,9 +12,9 @@ import java.util.ServiceLoader;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class Main {
+public class MainTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final Logger logger = LoggerFactory.getLogger(MainTest.class);
 
     @Test
     public void test() {
