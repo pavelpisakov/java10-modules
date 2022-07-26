@@ -2,6 +2,6 @@ import domain.UserRepository;
 
 module client {
     requires domain;
-    requires slf4j.api;
+    requires org.slf4j;
     uses UserRepository;
 }

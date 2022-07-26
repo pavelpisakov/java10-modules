@@ -16,6 +16,11 @@
         <module>client</module>
     </modules>
 
+    <properties>
+        <slf4j.version>1.7.36</slf4j.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -29,10 +34,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <properties>
-        <slf4j.version>1.7.36</slf4j.version>
-    </properties>
 
     <dependencyManagement>
         <dependencies>
